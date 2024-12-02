@@ -7,3 +7,12 @@ class Person(models.Model):
     
     def __str__(self):
         return self.face_id
+    
+class MovementLog(models.Model):
+    person=models.ForeignKey(person, on_delete=models.CASCADE)
+    timestamp=models.DateTimeField(auto_now_add=True)
+    location=models.CharField(max_lenght=100)
+    
+    def __str__(self):
+        return f"{self.person.face_id} at {self.location} on {self.timestamp}"
+    
